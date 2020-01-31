@@ -1,16 +1,15 @@
 package gameAI;
 
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Shape;
 
-public class Player implements BoardObject {
+public class Food implements BoardObject {
 	
 	Color color;
 	String shape;
 	
-	public Player() {
-		color = Color.BLUE;
-		shape = "circle";
+	public Food() {
+		color = Color.YELLOW;
+		shape = "rectangle";
 	}
 	
 	
