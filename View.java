@@ -1,8 +1,11 @@
 package gameAI;
 
+import java.util.ArrayList;
 import java.util.List;
 
-
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -13,18 +16,23 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 
 
 public class View extends Application {
 	
 	Controller controller = new Controller();
+	List shapes = new ArrayList();
+	
+	boolean gotVictoryOrLoss = false;
 	
 	public void drawBackground(StackPane root) {
 		for (int i = 0; i < controller.getBoardHeight(); i++) {
 			for (int j = 0; j < controller.getBoardWidth(); j++) {
-				Rectangle rect = drawRectangle();
+				Rectangle rect = drawBackgroundRectangle();
 				root.getChildren().add(rect);
 				StackPane.setAlignment(rect, Pos.CENTER);
 				rect.setTranslateX((-50 * (controller.getBoardWidth()/2)) + (j * 50));
@@ -33,7 +41,7 @@ public class View extends Application {
 		}
 	}
 	
-	public Rectangle drawRectangle() {
+	public Rectangle drawBackgroundRectangle() {
 		Rectangle rect = new Rectangle();
 		rect.setWidth(50);
 		rect.setHeight(50);
@@ -74,18 +82,41 @@ public class View extends Application {
 		for (int i = 0; i < objList.size(); i++) {
 			List specificObj = objList.get(i);
 			Shape objShape = getObjProperties((BoardObject)specificObj.get(2));
+			shapes.add(objShape);
 			StackPane.setAlignment(objShape, Pos.CENTER);
 			objShape.setTranslateX((-50 * (controller.getBoardWidth()/2)) + ((int) specificObj.get(0) * 50));
 			objShape.setTranslateY((-50 * (controller.getBoardHeight()/2))+ ((int)specificObj.get(1) * 50));
 			root.getChildren().add(objShape);
 		}
-		
 	}
 	
-	public void oneTurn(StackPane root) {
-
+	public void wipeBoard(StackPane root) {
+		for (int i = 0; i < shapes.size(); i++) {
+			root.getChildren().remove(shapes.get(i));
+		}
+		shapes = new ArrayList();
+	}
+	
+	public void drawVictory(StackPane root) {
+		Text text = new Text();
+		text.setText("You Won!");
+		StackPane.setAlignment(text, Pos.TOP_CENTER);
+		text.setTranslateY(30);
+		root.getChildren().add(text);
 	}
 	 
+	
+	public void oneTurn(StackPane root) {
+		if (!gotVictoryOrLoss) {
+			boolean winLose = controller.makeMoves();
+			wipeBoard(root);
+			drawBoard(root);
+			if (winLose == true) {
+				drawVictory(root);
+				gotVictoryOrLoss = true;
+			}
+		}
+	}
 	
 	@Override
 	public void start(Stage primaryStage) throws InterruptedException {
@@ -99,9 +130,19 @@ public class View extends Application {
 		// Set up and show the scene
 		primaryStage.setScene(new Scene(root, controller.getBoardWidth() * 100, controller.getBoardHeight() * 100));
 		primaryStage.show();
-		drawBackground(root);
 		
+		// Draw background
+		drawBackground(root);
+
+		// Draw the initial board state
 		drawBoard(root);
+		
+		// Give the player the view
+		controller.givePlayerView();
+		
+		Timeline timeline = new Timeline(new KeyFrame(Duration.millis(1000), ae -> oneTurn(root)));
+		timeline.setCycleCount(Animation.INDEFINITE);
+		timeline.play();
 	}
 	
 	

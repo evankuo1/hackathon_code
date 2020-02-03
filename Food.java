@@ -20,4 +20,9 @@ public class Food implements BoardObject {
 	public String getShape() {
 		return shape;
 	}
+	
+	public Direction move() {
+		Direction theMove = new Stay();
+		return theMove;
+	}
 }

@@ -5,4 +5,5 @@ import javafx.scene.paint.Color;
 interface BoardObject {
 	public Color getColor();
 	public String getShape();
+	public Direction move();
 }

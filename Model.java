@@ -9,6 +9,7 @@ public class Model {
 	Object[][] board;
 	int width;
 	int height;
+	List objList = new ArrayList();
 	
 	// Constructor with width and height for size of board
 	public Model () {
@@ -27,10 +28,10 @@ public class Model {
 		}
 		
 		
-		
-		List<ArrayList> objList = initialBoard.getObjList();
-		for (int i = 0; i < objList.size(); i++) {
-			ArrayList aList = objList.get(i);
+		List<ArrayList> initialObjList = initialBoard.getObjList();
+		for (int i = 0; i < initialObjList.size(); i++) {
+			objList.add(initialObjList.get(i).get(2));
+			ArrayList aList = initialObjList.get(i);
 			board[(int) aList.get(0)][(int) aList.get(1)] = aList.get(2);
 		}
 	}
@@ -44,12 +45,20 @@ public class Model {
 		board[x][y] = obj;
 	}
 	
+	void removePosition(int x, int y) {
+		board[x][y] = null;
+	}
+	
 	int getBoardWidth() {
 		return width;
 	}
 	
 	int getBoardHeight() {
 		return height;
+	}
+	
+	List getObjList() {
+		return objList;
 	}
 	
 }
