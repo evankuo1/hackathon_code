@@ -1,4 +1,4 @@
-package gameAI;
+package gameEngine;
 
 public class Down extends Direction {
 

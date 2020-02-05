@@ -1,7 +1,9 @@
-package gameAI;
+package gameEngine;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import editMe.Player;
 
 
 public class InitialBoard {

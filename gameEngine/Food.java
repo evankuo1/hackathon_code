@@ -1,4 +1,4 @@
-package gameAI;
+package gameEngine;
 
 import javafx.scene.paint.Color;
 

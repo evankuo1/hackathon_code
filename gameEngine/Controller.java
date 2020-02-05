@@ -1,8 +1,10 @@
-package gameAI;
+package gameEngine;
 
 
 import java.util.ArrayList;
 import java.util.List;
+
+import editMe.Player;
 
 public class Controller {
 	
@@ -12,15 +14,15 @@ public class Controller {
 		model = new Model();
 	}
 	
-	int getBoardWidth() {
+	public int getBoardWidth() {
 		return model.getBoardWidth();
 	}
 	
-	int getBoardHeight() {
+	public int getBoardHeight() {
 		return model.getBoardHeight();
 	}
 	
-	List<Integer> getObjPos(Object obj) {
+	public List<Integer> getObjPos(Object obj) {
 		List<Integer> list = new ArrayList<Integer>();
 		for (int i = 0; i < model.getBoardWidth(); i++) {
 			for (int j = 0; j < model.getBoardHeight(); j++) {
@@ -33,7 +35,7 @@ public class Controller {
 		return list;
 	}
 	
-	List<List> getObjectsWithPositions() {
+	public List<List> getObjectsWithPositions() {
 		List<List> objPosList = new ArrayList<List>();
 		for (int i = 0; i < model.getBoardWidth(); i++) {
 			for (int j = 0; j < model.getBoardHeight(); j++) {
@@ -49,7 +51,7 @@ public class Controller {
 		return objPosList;
 	}
 	
-	boolean makeMoves() {
+	public boolean makeMoves() {
 		List objList = model.getObjList();
 		for (int i = 0; i < objList.size(); i++) {
 			BoardObject anObj = (BoardObject) objList.get(i);
@@ -82,11 +84,11 @@ public class Controller {
 		return false;
 	}
 	
-	void placeObject(int x, int y, Object obj) {
+	public void placeObject(int x, int y, Object obj) {
 		model.setPosition(x, y, obj);
 	}
 	
-	boolean handleCollision(int x, int y, Object first, Object second) {
+	public boolean handleCollision(int x, int y, Object first, Object second) {
 		if (first instanceof Food && second instanceof Player) {
 			model.setPosition(x, y, second);
 			return true;
@@ -96,7 +98,7 @@ public class Controller {
 		}
 	}
 	
-	boolean moveObject(int x, int y, Object obj) {
+	public boolean moveObject(int x, int y, Object obj) {
 		List<Integer> pos = getObjPos(obj);
 		model.removePosition(pos.get(0), pos.get(1));
 		if (model.getPosition(x, y) == null) {
@@ -109,7 +111,7 @@ public class Controller {
 		}
 	}
 	
-	void givePlayerView() {
+	public void givePlayerView() {
 		List<List> theObjs = getObjectsWithPositions();
 		for (int i = 0; i < theObjs.size(); i++) {
 			if (theObjs.get(i).get(2) instanceof Player) {
@@ -118,11 +120,11 @@ public class Controller {
 		}
 	}
 	
-	 Controller giveObjReference() {
+	public  Controller giveObjReference() {
 		return this;
 	}
 	
-	Object getPos(int x, int y) {
+	public Object getPos(int x, int y) {
 		return model.getPosition(x, y);
 	}
 

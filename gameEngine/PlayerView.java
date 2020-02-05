@@ -1,6 +1,8 @@
-package gameAI;
+package gameEngine;
 
 import java.util.List;
+
+import editMe.Player;
 
 public class PlayerView {
 	
@@ -20,23 +22,23 @@ public class PlayerView {
 	}
 	
 	
-	int getMyX() {
+	public int getMyX() {
 		return controller.getObjPos(player).get(0);
 	}
 	
-	int getMyY() {
+	public int getMyY() {
 		return controller.getObjPos(player).get(1);
 	}
 	
-	int getFoodX() {
+	public int getFoodX() {
 		return controller.getObjPos(food).get(0);
 	}
 	
-	int getFoodY() {
+	public int getFoodY() {
 		return controller.getObjPos(food).get(1);
 	}
 	
-	Object getPosition(int x, int y) {
+	public Object getPosition(int x, int y) {
 		return controller.getPos(x, y);
 	}
 	

@@ -1,5 +1,15 @@
-// The package and imports. Don't touch these!
-package gameAI;
+package editMe;
+
+
+import gameEngine.BoardObject;
+import gameEngine.Controller;
+import gameEngine.Direction;
+import gameEngine.Down;
+import gameEngine.Left;
+import gameEngine.PlayerView;
+import gameEngine.Right;
+import gameEngine.Stay;
+import gameEngine.Up;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Shape;
 
