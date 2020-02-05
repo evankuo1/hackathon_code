@@ -1,5 +1,6 @@
 package gameAI;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -115,6 +116,10 @@ public class Controller {
 				((Player) theObjs.get(i).get(2)).initializePlayerView(this);
 			}
 		}
+	}
+	
+	 Controller giveObjReference() {
+		return this;
 	}
 	
 	Object getPos(int x, int y) {

@@ -6,7 +6,7 @@ public class Food implements BoardObject {
 	
 	Color color;
 	String shape;
-	
+
 	public Food() {
 		color = Color.YELLOW;
 		shape = "rectangle";
@@ -24,5 +24,10 @@ public class Food implements BoardObject {
 	public Direction move() {
 		Direction theMove = new Stay();
 		return theMove;
+	}
+	
+	public String toString() {
+		Direction theMove = move();
+		return "food";
 	}
 }
