@@ -32,6 +32,13 @@ public class InitialBoard {
 			foodList.add(2);
 			foodList.add(food);
 			objList.add(foodList);
+			
+			Enemy enemy = new Enemy();
+			ArrayList enemyList = new ArrayList();
+			enemyList.add(2);
+			enemyList.add(1);
+			enemyList.add(enemy);
+			objList.add(enemyList);
 		}
 	
 	int getWidth() {

@@ -38,8 +38,16 @@ public class PlayerView {
 		return controller.getObjPos(food).get(1);
 	}
 	
-	public Object getPosition(int x, int y) {
-		return controller.getPos(x, y);
+	public String getPosition(int x, int y) {
+		
+		Object theObj = controller.getPos(x, y);
+		
+		if (theObj == null) {
+			return "empty";
+		}
+		
+		else {
+			return theObj.toString();
+		}
 	}
-	
 }

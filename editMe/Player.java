@@ -37,6 +37,14 @@ public class Player implements BoardObject {
 		info = new PlayerView(controller, this);
 	}
 	
+	// What happens when colliding with another BoardObject
+	public String onCollision() {
+		return "player";
+	}
+
+	public String toString() {
+		return "player";
+	}
 	
 	
 	
@@ -48,22 +56,17 @@ public class Player implements BoardObject {
 	
 	// Write this!
 	public Direction move() {
+		
 		Direction direction;
-		if (info.getFoodX() < info.getMyX()) {
-			direction = new Left();
-		}
-		else if (info.getFoodX() > info.getMyX()) {
+		
+		if (info.getMyX() == 0) {
 			direction = new Right();
 		}
-		else if (info.getFoodY() < info.getMyY()) {
-			direction = new Up();
-		}
-		else if (info.getFoodY() > info.getMyY()) {
-			direction = new Down();
-		}
+		
 		else {
-			direction = new Stay();
+			direction = new Left();
 		}
+		
 		return direction;
 	}
 }

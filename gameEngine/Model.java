@@ -28,6 +28,7 @@ public class Model {
 		}
 		
 		
+		
 		List<ArrayList> initialObjList = initialBoard.getObjList();
 		for (int i = 0; i < initialObjList.size(); i++) {
 			objList.add(initialObjList.get(i).get(2));

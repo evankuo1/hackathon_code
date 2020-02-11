@@ -2,16 +2,15 @@ package gameEngine;
 
 import javafx.scene.paint.Color;
 
-public class Food implements BoardObject {
+public class Enemy implements BoardObject {
 	
 	Color color;
 	String shape;
 
-	public Food() {
-		color = Color.YELLOW;
-		shape = "rectangle";
+	public Enemy() {
+		color = Color.RED;
+		shape = "circle";
 	}
-	
 	
 	public Color getColor() {
 		return color;
@@ -27,10 +26,11 @@ public class Food implements BoardObject {
 	}
 	
 	public String onCollision() {
-		return "goal";
+		return "enemy";
 	}
 	
 	public String toString() {
-		return "goal";
+		return "enemy";
 	}
+
 }

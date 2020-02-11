@@ -1,13 +1,10 @@
 package gameEngine;
 
-
-
-import java.util.List;
-
 import javafx.scene.paint.Color;
 
-public interface BoardObject {
+public interface BoardObject extends BoardAndTileObject {
 	public Color getColor();
 	public String getShape();
 	public Direction move();
+	public String onCollision();
 }
